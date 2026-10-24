@@ -1,0 +1,44 @@
+<?php
+
+use App\Http\Controllers\Admin\DirectorController;
+use App\Http\Controllers\Admin\PresenceController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnneeScolaireController;
+use App\Http\Controllers\MatiereController;
+use App\Http\Controllers\ProgrammeClasseController;
+use App\Http\Controllers\AffectationProfesseurController;
+use App\Http\Controllers\PeriodeController;
+use App\Http\Controllers\InscriptionController;
+use App\Http\Controllers\NoteController;
+use App\Http\Controllers\BulletinController;
+use App\Http\Controllers\BulletinDetailController;
+use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\CycleController;
+use App\Http\Controllers\DecisionScolaireController;
+use App\Http\Controllers\EleveController;
+use App\Http\Controllers\NiveauController;
+use App\Http\Controllers\ProfesseurController;
+
+Route::group(['middleware' => ['auth', 'isDirector'], 'prefix' => 'director', 'as' => "director."], function () {
+    Route::get('Dashboard', [DirectorController::class, 'index'])->name('dashboard');
+
+
+    Route::resource('annees-scolaires', AnneeScolaireController::class);
+    Route::resource('matieres', MatiereController::class);
+    Route::resource('programmes-classes', ProgrammeClasseController::class);
+    Route::resource('affectations', AffectationProfesseurController::class);
+    Route::resource('periodes', PeriodeController::class);
+    Route::resource('inscriptions', InscriptionController::class);
+    Route::resource('notes', NoteController::class);
+    route::post('bulletins/{bulletin}/generer', [BulletinController::class, 'generer'])->name('bulletins.generer');
+    route::post('bulletins/{bulletin}/valider', [BulletinController::class, 'valider'])->name('bulletins.valider');
+    Route::resource('bulletins', BulletinController::class);
+    Route::resource('bulletins-details', BulletinDetailController::class);
+    Route::resource('cycle', CycleController::class);
+    Route::resource('niveau', NiveauController::class);
+    Route::resource('classes', ClasseController::class);
+    Route::resource('decisions-scolaires', DecisionScolaireController::class);
+    Route::resource('presence', PresenceController::class);
+    Route::resource('professeurs', ProfesseurController::class);
+    Route::resource('eleves', EleveController::class)->parameters(['eleves' => 'eleve']);
+});
