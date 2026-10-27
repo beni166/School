@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\NoteController;
 use App\Http\Controllers\Admin\PeriodeController;
 use App\Http\Controllers\Admin\PresenceController;
 use App\Http\Controllers\Admin\ProfesseurController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProgrammeClasseController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,19 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth', 'isDirector'], 'prefix' => 'director', 'as' => "director."], function () {
     Route::get('Dashboard', [DirectorController::class, 'index'])->name('dashboard');
 
+    Route::get('/profile', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
 
+    Route::patch('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+
+    Route::delete('/profile', [ProfileController::class, 'destroy'])
+        ->name('profile.destroy');
+
+    Route::get(
+        '/bulletins/{bulletin}/pdf',
+        [BulletinController::class, 'pdf']
+    )->name('bulletins.pdf');
     Route::resource('annees-scolaires', AdminAnneeScolaireController::class);
     Route::resource('matieres', MatiereController::class);
     Route::resource('programmes-classes', ProgrammeClasseController::class);

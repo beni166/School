@@ -50,6 +50,7 @@
                         <button type="submit" class="btn btn-success rounded-3 px-3 py-2">
                             <i class="fas fa-check me-2"></i>Valider
                         </button>
+                        
                     </form>
                 @endif
             @else
@@ -57,7 +58,12 @@
                     <i class="fas fa-lock me-1"></i> Bulletin validé
                 </span>
             @endif
-
+<a href="{{ route('director.bulletins.pdf', $bulletin->id) }}"
+   class="btn btn-primary"
+   target="_blank">
+    <i class="fas fa-file-pdf"></i>
+    Télécharger le bulletin PDF
+</a>
             <button type="button" onclick="window.print()"
                     class="btn btn-light border rounded-3 px-3 py-2">
                 <i class="fas fa-print me-2"></i>Imprimer

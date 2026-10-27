@@ -1,239 +1,274 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
+     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription | École Admin</title>
 
+    <title>{{ config('app.name', 'School') }}</title>
+
+    {{-- Bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+
+    {{-- Font Awesome --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           rel="stylesheet">
 
-    <style>
-        body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #eef4ff, #f8faff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 30px 16px;
-        }
+    {{-- Ton design personnalisé --}}
+    <link rel="stylesheet" href="{{ asset('assets/Auth/css/Sytle.css') }}">
 
-        .register-card {
-            width: 100%;
-            max-width: 460px;
-            background: #fff;
-            border: 1px solid #e8edf5;
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 15px 45px rgba(31, 55, 90, .09);
-        }
-
-        .school-icon {
-            width: 65px;
-            height: 65px;
-            margin: 0 auto 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #eaf1ff;
-            color: #2457d6;
-            border-radius: 18px;
-            font-size: 30px;
-        }
-
-        .form-control {
-            padding: 12px 14px;
-            border-radius: 10px;
-        }
-
-        .input-group-text {
-            background: #fff;
-            border-radius: 10px 0 0 10px;
-        }
-
-        .input-group .form-control {
-            border-radius: 0 10px 10px 0;
-        }
-
-        .form-control:focus {
-            border-color: #2457d6;
-            box-shadow: 0 0 0 .2rem rgba(36, 87, 214, .12);
-        }
-
-        .btn-register {
-            background: #2457d6;
-            border: none;
-            color: #fff;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 600;
-        }
-
-        .btn-register:hover {
-            background: #1945b5;
-            color: #fff;
-        }
-    </style>
 </head>
+
 <body>
+        
+    <div class="auth-shell">
 
-<div class="register-card">
+        {{-- Panneau de présentation --}}
+        <section class="auth-presentation">
+            <a href="/" class="auth-brand">
+                <span class="auth-brand-icon">
+                    <i class="fas fa-school"></i>
+                </span>
 
-    <div class="text-center mb-4">
-        <div class="school-icon">
-            <i class="bi bi-mortarboard-fill"></i>
-        </div>
+                <span>
+                    <strong>School</strong>
+                    <small>Gestion scolaire</small>
+                </span>
+            </a>
 
-        <h3 class="fw-bold mb-2">Créer un compte</h3>
-        <p class="text-secondary mb-0">
-            Rejoignez votre espace de gestion scolaire
-        </p>
+            <div class="auth-welcome">
+                <span class="auth-eyebrow">ESPACE SÉCURISÉ</span>
+                <h1>Rejoignez-nous !</h1>
+
+                <p>
+                    Créez votre compte pour accéder aux services
+                    de votre plateforme de gestion scolaire.
+                </p>
+            </div>
+
+            <div class="auth-benefits">
+                <div class="auth-benefit">
+                    <span>
+                        <i class="fas fa-user-plus"></i>
+                    </span>
+                    <div>
+                        <strong>Création de compte</strong>
+                        <p>Un accès simple à votre espace personnel.</p>
+                    </div>
+                </div>
+
+                <div class="auth-benefit">
+                    <span>
+                        <i class="fas fa-shield-alt"></i>
+                    </span>
+                    <div>
+                        <strong>Données protégées</strong>
+                        <p>Vos informations restent confidentielles.</p>
+                    </div>
+                </div>
+
+                <div class="auth-benefit">
+                    <span>
+                        <i class="fas fa-graduation-cap"></i>
+                    </span>
+                    <div>
+                        <strong>Gestion scolaire</strong>
+                        <p>Une plateforme dédiée à votre établissement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="auth-slogan">
+                Ensemble pour l'excellence.
+            </p>
+        </section>
+
+        {{-- Formulaire d'inscription --}}
+        <section class="auth-form-panel">
+            <div class="auth-form-content">
+
+                <div class="auth-mobile-brand">
+                    <i class="fas fa-school"></i> School
+                </div>
+
+                <div class="auth-heading">
+                    <h2>Créer un compte</h2>
+                    <p>Renseignez vos informations pour continuer.</p>
+                </div>
+
+                {{-- Erreurs de validation --}}
+                @if ($errors->any())
+                    <div class="auth-register-errors" role="alert">
+                        <i class="fas fa-exclamation-circle me-1"></i>
+                        Veuillez corriger les erreurs suivantes.
+
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+
+                    {{-- Nom complet --}}
+                    <div class="auth-field">
+                        <label for="name">Nom complet</label>
+
+                        <div class="auth-input-wrap">
+                            <i class="far fa-user"></i>
+
+                            <input
+                                id="name"
+                                type="text"
+                                name="name"
+                                value="{{ old('name') }}"
+                                placeholder="Votre nom complet"
+                                autocomplete="name"
+                                required
+                                autofocus
+                            >
+                        </div>
+
+                        @error('name')
+                            <p class="auth-error">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Adresse e-mail --}}
+                    <div class="auth-field">
+                        <label for="email">Adresse e-mail</label>
+
+                        <div class="auth-input-wrap">
+                            <i class="far fa-envelope"></i>
+
+                            <input
+                                id="email"
+                                type="email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                placeholder="exemple@ecole.tg"
+                                autocomplete="username"
+                                required
+                            >
+                        </div>
+
+                        @error('email')
+                            <p class="auth-error">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Mot de passe --}}
+                    <div class="auth-field">
+                        <label for="password">Mot de passe</label>
+
+                        <div class="auth-input-wrap">
+                            <i class="fas fa-lock"></i>
+
+                            <input
+                                id="password"
+                                type="password"
+                                name="password"
+                                placeholder="Au moins 8 caractères"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="auth-password-toggle"
+                                data-toggle-password="password"
+                                aria-label="Afficher le mot de passe"
+                            >
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+
+                        @error('password')
+                            <p class="auth-error">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Confirmation du mot de passe --}}
+                    <div class="auth-field">
+                        <label for="password_confirmation">
+                            Confirmer le mot de passe
+                        </label>
+
+                        <div class="auth-input-wrap">
+                            <i class="fas fa-lock"></i>
+
+                            <input
+                                id="password_confirmation"
+                                type="password"
+                                name="password_confirmation"
+                                placeholder="Répétez votre mot de passe"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="auth-password-toggle"
+                                data-toggle-password="password_confirmation"
+                                aria-label="Afficher la confirmation"
+                            >
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Bouton de création --}}
+                    <button type="submit" class="auth-submit">
+                        <i class="fas fa-user-plus me-2"></i>
+                        Créer mon compte
+                    </button>
+                </form>
+
+                <div class="auth-help auth-register-footer">
+                    Vous avez déjà un compte ?
+                    <a href="{{ route('login') }}">Se connecter</a>
+                </div>
+            </div>
+
+            <div class="auth-bottom">
+                <i class="fas fa-lock me-1"></i>
+                Inscription sécurisée à votre établissement
+            </div>
+        </section>
     </div>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <i class="bi bi-exclamation-circle me-2"></i>
-            Veuillez corriger les erreurs du formulaire.
-        </div>
-    @endif
+    {{-- Afficher / masquer les mots de passe --}}
+    <script>
+        document.querySelectorAll('[data-toggle-password]')
+            .forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const input = document.getElementById(
+                        button.dataset.togglePassword
+                    );
 
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+                    const icon = button.querySelector('i');
+                    const hidden = input.type === 'password';
 
-        {{-- Nom --}}
-        <div class="mb-3">
-            <label for="name" class="form-label fw-semibold">
-                Nom complet
-            </label>
+                    input.type = hidden ? 'text' : 'password';
 
-            <div class="input-group">
-                <span class="input-group-text">
-                    <i class="bi bi-person text-secondary"></i>
-                </span>
+                    icon.classList.toggle('fa-eye', !hidden);
+                    icon.classList.toggle('fa-eye-slash', hidden);
 
-                <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    value="{{ old('name') }}"
-                    class="form-control @error('name') is-invalid @enderror"
-                    placeholder="Votre nom complet"
-                    required
-                    autofocus
-                    autocomplete="name"
-                >
-            </div>
+                    button.setAttribute(
+                        'aria-label',
+                        hidden
+                            ? 'Masquer le mot de passe'
+                            : 'Afficher le mot de passe'
+                    );
+                });
+            });
+    </script>
 
-            @error('name')
-                <div class="text-danger small mt-1">{{ $message }}</div>
-            @enderror
-        </div>
-
-        {{-- E-mail --}}
-        <div class="mb-3">
-            <label for="email" class="form-label fw-semibold">
-                Adresse e-mail
-            </label>
-
-            <div class="input-group">
-                <span class="input-group-text">
-                    <i class="bi bi-envelope text-secondary"></i>
-                </span>
-
-                <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    value="{{ old('email') }}"
-                    class="form-control @error('email') is-invalid @enderror"
-                    placeholder="nom@exemple.com"
-                    required
-                    autocomplete="username"
-                >
-            </div>
-
-            @error('email')
-                <div class="text-danger small mt-1">{{ $message }}</div>
-            @enderror
-        </div>
-
-        {{-- Mot de passe --}}
-        <div class="mb-3">
-            <label for="password" class="form-label fw-semibold">
-                Mot de passe
-            </label>
-
-            <div class="input-group">
-                <span class="input-group-text">
-                    <i class="bi bi-lock text-secondary"></i>
-                </span>
-
-                <input
-                    id="password"
-                    type="password"
-                    name="password"
-                    class="form-control @error('password') is-invalid @enderror"
-                    placeholder="Créer un mot de passe"
-                    required
-                    autocomplete="new-password"
-                >
-            </div>
-
-            @error('password')
-                <div class="text-danger small mt-1">{{ $message }}</div>
-            @enderror
-        </div>
-
-        {{-- Confirmation --}}
-        <div class="mb-4">
-            <label for="password_confirmation"
-                   class="form-label fw-semibold">
-                Confirmer le mot de passe
-            </label>
-
-            <div class="input-group">
-                <span class="input-group-text">
-                    <i class="bi bi-shield-lock text-secondary"></i>
-                </span>
-
-                <input
-                    id="password_confirmation"
-                    type="password"
-                    name="password_confirmation"
-                    class="form-control"
-                    placeholder="Répéter le mot de passe"
-                    required
-                    autocomplete="new-password"
-                >
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-register w-100">
-            <i class="bi bi-person-plus me-2"></i>
-            Créer mon compte
-        </button>
-    </form>
-
-    <div class="text-center mt-4">
-        <span class="text-secondary small">
-            Vous avez déjà un compte ?
-        </span>
-
-        <a href="{{ route('login') }}"
-           class="small fw-semibold text-decoration-none">
-            Se connecter
-        </a>
-    </div>
-
-    <div class="text-center mt-4">
-        <small class="text-secondary">
-            &copy; {{ date('Y') }} École Admin — Gestion scolaire
-        </small>
-    </div>
-
-</div>
 
 </body>
 </html>

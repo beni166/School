@@ -16,7 +16,7 @@ class DirectorMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->user()->role !== "director") {
-            return redirect('/');
+            return redirect('director/dashboard');
         }
         return $next($request);
     }

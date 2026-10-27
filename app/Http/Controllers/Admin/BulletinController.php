@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Bulletin;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\BulletinDetail;
 use App\Http\Controllers\Controller;
 use App\Models\Inscription;
@@ -35,6 +36,26 @@ class BulletinController extends Controller
     /**
      * Formulaire de création d'un bulletin.
      */
+
+    public function pdf(Bulletin $bulletin)
+{
+    $bulletin->load([
+        'inscription.eleve',
+        'inscription.classe',
+        'inscription.anneeScolaire',
+        'periode',
+        'details.matiere',
+        'details.professeur',
+    ]);
+
+    $pdf = Pdf::loadView(
+        'bulletin.pdf',
+        compact('bulletin')
+    );
+
+    return $pdf->setPaper('a4', 'portrait')
+               ->stream('bulletin-scolaire.pdf');
+}
     public function create()
     {
         $inscriptions = Inscription::with([
