@@ -1,29 +1,30 @@
 <?php
 
+use App\Http\Controllers\Admin\AffectationProfesseurController;
+use App\Http\Controllers\Admin\AnneeScolaireController as AdminAnneeScolaireController;
+use App\Http\Controllers\Admin\BulletinController;
+use App\Http\Controllers\Admin\BulletinDetailController;
+use App\Http\Controllers\Admin\ClasseController;
+use App\Http\Controllers\Admin\CycleController;
+use App\Http\Controllers\Admin\DecisionScolaireController;
 use App\Http\Controllers\Admin\DirectorController;
+use App\Http\Controllers\Admin\EleveController;
+use App\Http\Controllers\Admin\InscriptionController;
+use App\Http\Controllers\Admin\MatiereController;
+use App\Http\Controllers\Admin\NiveauController;
+use App\Http\Controllers\Admin\NoteController;
+use App\Http\Controllers\Admin\PeriodeController;
 use App\Http\Controllers\Admin\PresenceController;
+use App\Http\Controllers\Admin\ProfesseurController;
+use App\Http\Controllers\Admin\ProgrammeClasseController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AnneeScolaireController;
-use App\Http\Controllers\MatiereController;
-use App\Http\Controllers\ProgrammeClasseController;
-use App\Http\Controllers\AffectationProfesseurController;
-use App\Http\Controllers\PeriodeController;
-use App\Http\Controllers\InscriptionController;
-use App\Http\Controllers\NoteController;
-use App\Http\Controllers\BulletinController;
-use App\Http\Controllers\BulletinDetailController;
-use App\Http\Controllers\ClasseController;
-use App\Http\Controllers\CycleController;
-use App\Http\Controllers\DecisionScolaireController;
-use App\Http\Controllers\EleveController;
-use App\Http\Controllers\NiveauController;
-use App\Http\Controllers\ProfesseurController;
+
 
 Route::group(['middleware' => ['auth', 'isDirector'], 'prefix' => 'director', 'as' => "director."], function () {
     Route::get('Dashboard', [DirectorController::class, 'index'])->name('dashboard');
 
 
-    Route::resource('annees-scolaires', AnneeScolaireController::class);
+    Route::resource('annees-scolaires', AdminAnneeScolaireController::class);
     Route::resource('matieres', MatiereController::class);
     Route::resource('programmes-classes', ProgrammeClasseController::class);
     Route::resource('affectations', AffectationProfesseurController::class);
@@ -38,7 +39,48 @@ Route::group(['middleware' => ['auth', 'isDirector'], 'prefix' => 'director', 'a
     Route::resource('niveau', NiveauController::class);
     Route::resource('classes', ClasseController::class);
     Route::resource('decisions-scolaires', DecisionScolaireController::class);
-    Route::resource('presence', PresenceController::class);
+    // Route::resource('presence', PresenceController::class);
     Route::resource('professeurs', ProfesseurController::class);
     Route::resource('eleves', EleveController::class)->parameters(['eleves' => 'eleve']);
+
+
+    Route::get('presences', [
+        PresenceController::class,
+        'index',
+    ])->name('presences.index');
+
+    Route::get('presences/create', [
+        PresenceController::class,
+        'create',
+    ])->name('presences.create');
+
+    Route::post('presences', [
+        PresenceController::class,
+        'store',
+    ])->name('presences.store');
+
+    Route::post('presences/appel', [
+        PresenceController::class,
+        'enregistrerAppel',
+    ])->name('presences.appel');
+
+    Route::get('presences/{presence}', [
+        PresenceController::class,
+        'show',
+    ])->name('presences.show');
+
+    Route::get('presences/{presence}/edit', [
+        PresenceController::class,
+        'edit',
+    ])->name('presences.edit');
+
+    Route::put('presences/{presence}', [
+        PresenceController::class,
+        'update',
+    ])->name('presences.update');
+
+    Route::delete('presences/{presence}', [
+        PresenceController::class,
+        'destroy',
+    ])->name('presences.destroy');
 });

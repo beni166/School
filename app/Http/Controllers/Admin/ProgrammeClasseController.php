@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\ProgrammeClasse;
 use App\Models\AnneeScolaire;
 use App\Models\Classe;

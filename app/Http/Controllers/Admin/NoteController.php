@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Note;
 use App\Models\Inscription;
@@ -9,6 +9,8 @@ use App\Models\Matiere;
 use App\Models\ProgrammeClasse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+
 
 class NoteController extends Controller
 {

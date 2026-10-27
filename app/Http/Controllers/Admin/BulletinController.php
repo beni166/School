@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Bulletin;
 use App\Models\BulletinDetail;
+use App\Http\Controllers\Controller;
 use App\Models\Inscription;
 use App\Models\Periode;
 use App\Models\ProgrammeClasse;

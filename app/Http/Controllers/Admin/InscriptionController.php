@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Inscription;
 use App\Models\Eleve;
+use App\Http\Controllers\Controller;
 use App\Models\Classe;
 use App\Models\AnneeScolaire;
 use Illuminate\Http\Request;

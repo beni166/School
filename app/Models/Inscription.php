@@ -3,13 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Inscription extends Model
 {
     protected $fillable = [
-        'eleve_id', 'annee_scolaire_id',
-        'classe_id', 'numero_inscription',
-        'date_inscription', 'statut',
+        'eleve_id',
+        'annee_scolaire_id',
+        'classe_id',
+        'numero_inscription',
+        'date_inscription',
+        'statut',
     ];
 
     protected $casts = [
@@ -44,5 +48,10 @@ class Inscription extends Model
     public function decisionScolaire()
     {
         return $this->hasOne(DecisionScolaire::class);
+    }
+
+    public function presences(): HasMany
+    {
+        return $this->hasMany(Presence::class);
     }
 }

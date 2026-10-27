@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Periode;
 use App\Models\AnneeScolaire;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class PeriodeController extends Controller

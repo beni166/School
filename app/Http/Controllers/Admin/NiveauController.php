@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Cycle;
 use App\Models\Niveau;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class NiveauController extends Controller
 {
