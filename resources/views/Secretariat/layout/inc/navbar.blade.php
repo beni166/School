@@ -33,7 +33,7 @@
 
             <ul class="dropdown-menu dropdown-menu-end shadow border-0">
                 <li>
-                    <a class="dropdown-item" href="{{ route('secretary.profile.edit') }}">
+                    <a class="dropdown-item" href="{{ route('secretariat.profile.edit') }}">
                         <i class="fas fa-user me-2"></i> Mon profil
                     </a>
                 </li>

@@ -5,7 +5,7 @@
 @section('content')
 <div class="container-fluid px-3 px-md-4 py-4">
     <div class="mb-4">
-        <a href="{{ route('secretary.affectations.index') }}" class="text-decoration-none text-secondary small">
+        <a href="{{ route('secretariat.affectations.index') }}" class="text-decoration-none text-secondary small">
             <i class="bi bi-arrow-left me-1"></i>Retour aux affectations
         </a>
         <h1 class="h3 fw-bold mt-3 mb-1">Nouvelle affectation</h1>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="card-body p-4">
-                    <form action="{{ route('secretary.affectations.store') }}" method="POST">
+                    <form action="{{ route('secretariat.affectations.store') }}" method="POST">
                         @csrf
 
                         <div class="mb-4">

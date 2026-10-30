@@ -38,7 +38,7 @@
 
             {{-- Formulaire principal --}}
             <form method="post"
-                  action="{{ route('profile.update') }}"
+                  action="{{ route('director.profile.update') }}"
                   class="profile-form">
 
                 @csrf

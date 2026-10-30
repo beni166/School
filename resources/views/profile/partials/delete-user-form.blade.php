@@ -100,7 +100,7 @@
 
                     {{-- Formulaire Laravel --}}
                     <form method="post"
-                          action="{{ route('profile.destroy') }}"
+                          action="{{ route('director.profile.destroy') }}"
                           id="deleteAccountForm">
 
                         @csrf

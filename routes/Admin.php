@@ -55,7 +55,10 @@ Route::group(['middleware' => ['auth', 'isDirector'], 'prefix' => 'director', 'a
     // Route::resource('presence', PresenceController::class);
     Route::resource('professeurs', ProfesseurController::class);
     Route::resource('eleves', EleveController::class)->parameters(['eleves' => 'eleve']);
-
+    Route::get(
+        'classes/{classe}/annees/{anneeScolaire}/liste-eleves/pdf',
+        [ClasseController::class, 'exporterListeElevesPdf']
+    )->name('classes.liste-eleves.pdf');
 
     Route::get('presences', [
         PresenceController::class,

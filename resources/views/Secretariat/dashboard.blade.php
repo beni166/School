@@ -14,7 +14,7 @@
             </p>
         </div>
 
-        <a href="{{ route('secretary.inscriptions.create') }}"
+        <a href="{{ route('secretariat.inscriptions.create') }}"
            class="btn btn-primary">
             <i class="fas fa-plus me-2"></i>
             Nouvelle inscription
@@ -39,28 +39,28 @@
                 'value' => $inscriptionsEnAttente ?? 0,
                 'icon' => 'fa-user-clock',
                 'color' => 'warning',
-                'route' => 'secretary.inscriptions.index',
+                'route' => 'secretariat.inscriptions.index',
             ],
             [
                 'label' => 'Élèves inscrits',
                 'value' => $totalEleves ?? 0,
                 'icon' => 'fa-user-graduate',
                 'color' => 'primary',
-                'route' => 'secretary.eleves.index',
+                'route' => 'secretariat.eleves.index',
             ],
             [
                 'label' => 'Inscriptions récentes',
                 'value' => $inscriptionsRecentes->count() ?? 0,
                 'icon' => 'fa-user-plus',
                 'color' => 'success',
-                'route' => 'secretary.inscriptions.index',
+                'route' => 'secretariat.inscriptions.index',
             ],
             [
                 'label' => 'Bulletins en brouillon',
                 'value' => $bulletinsBrouillon ?? 0,
                 'icon' => 'fa-file-alt',
                 'color' => 'danger',
-                'route' => 'secretary.bulletins.index',
+                'route' => 'secretariat.bulletins.index',
             ],
         ];
     @endphp
@@ -108,35 +108,35 @@
                 <div class="card-body p-4">
                     <div class="d-grid gap-3">
 
-                        <a href="{{ route('secretary.inscriptions.index') }}"
+                        <a href="{{ route('secretariat.inscriptions.index') }}"
                            class="btn btn-primary py-3 text-start">
                             <i class="fas fa-user-plus me-2"></i>
                             Gérer les inscriptions
                             <i class="fas fa-arrow-right float-end mt-1"></i>
                         </a>
 
-                        <a href="{{ route('secretary.eleves.index') }}"
+                        <a href="{{ route('secretariat.eleves.index') }}"
                            class="btn btn-outline-primary py-3 text-start">
                             <i class="fas fa-user-graduate me-2"></i>
                             Consulter les élèves
                             <i class="fas fa-arrow-right float-end mt-1"></i>
                         </a>
 
-                        <a href="{{ route('secretary.affectations.index') }}"
+                        <a href="{{ route('secretariat.affectations.index') }}"
                            class="btn btn-outline-secondary py-3 text-start">
                             <i class="fas fa-chalkboard-teacher me-2"></i>
                             Affectations des professeurs
                             <i class="fas fa-arrow-right float-end mt-1"></i>
                         </a>
 
-                        <a href="{{ route('secretary.bulletins.index') }}"
+                        <a href="{{ route('secretariat.bulletins.index') }}"
                            class="btn btn-outline-success py-3 text-start">
                             <i class="fas fa-file-alt me-2"></i>
                             Suivre les bulletins
                             <i class="fas fa-arrow-right float-end mt-1"></i>
                         </a>
 
-                        <a href="{{ route('secretary.presences.index') }}"
+                        <a href="{{ route('secretariat.presences.index') }}"
                            class="btn btn-outline-warning py-3 text-start">
                             <i class="fas fa-calendar-check me-2"></i>
                             Gérer les présences
@@ -161,7 +161,7 @@
                             </p>
                         </div>
 
-                        <a href="{{ route('secretary.inscriptions.index') }}"
+                        <a href="{{ route('secretariat.inscriptions.index') }}"
                            class="btn btn-sm btn-outline-primary">
                             Tout afficher
                         </a>

@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'isSecretary'])
     ->prefix('secretary')
-    ->as('secretary.')
+    ->as('secretariat.')
     ->group(function () {
 
       

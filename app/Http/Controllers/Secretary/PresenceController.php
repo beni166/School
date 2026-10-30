@@ -42,7 +42,7 @@ class PresenceController extends Controller
             ->paginate(15)
             ->withQueryString();
 
-        return view('secretariat.Presence.index', compact('presences'));
+        return view('secretariat.Presences.index', compact('presences'));
     }
 
     /**
@@ -60,7 +60,7 @@ class PresenceController extends Controller
                 return $inscription->eleve->nom ?? '';
             });
 
-        return view('secretariat.Presence.create', compact('inscriptions'));
+        return view('secretariat.Presences.create', compact('inscriptions'));
     }
 
     /**
@@ -139,7 +139,7 @@ class PresenceController extends Controller
             'utilisateur',
         ]);
 
-        return view('secretariat.Presence.show', compact('presence'));
+        return view('secretariat.Presences.show', compact('presence'));
     }
 
     /**
@@ -152,7 +152,7 @@ class PresenceController extends Controller
             'inscription.classe',
         ]);
 
-        return view('secretariat.Presence.edit', compact('presence'));
+        return view('secretariat.Presences.edit', compact('presence'));
     }
 
     /**

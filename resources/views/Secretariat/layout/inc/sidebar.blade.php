@@ -1,6 +1,6 @@
 
 <aside class="secretariat-sidebar" id="secretariatSidebar">
-    <a href="{{ route('secretary.dashboard') }}" class="school-brand">
+    <a href="{{ route('secretariat.dashboard') }}" class="school-brand">
         <span class="school-brand-icon">
             <i class="fas fa-school"></i>
         </span>
@@ -13,38 +13,38 @@
     <div class="sidebar-section-title">ESPACE PRINCIPAL</div>
 
     <nav class="sidebar-nav">
-        <a href="{{ route('secretary.dashboard') }}"
-           class="sidebar-link {{ request()->routeIs('secretary.dashboard') ? 'active' : '' }}">
+        <a href="{{ route('secretariat.dashboard') }}"
+           class="sidebar-link {{ request()->routeIs('secretariat.dashboard') ? 'active' : '' }}">
             <i class="fas fa-th-large"></i>
             <span>Tableau de bord</span>
         </a>
 
-        <a href="{{ route('secretary.inscriptions.index') }}"
-           class="sidebar-link {{ request()->routeIs('secretary.inscriptions.*') ? 'active' : '' }}">
+        <a href="{{ route('secretariat.inscriptions.index') }}"
+           class="sidebar-link {{ request()->routeIs('secretariat.inscriptions.*') ? 'active' : '' }}">
             <i class="fas fa-file-signature"></i>
             <span>Inscriptions</span>
         </a>
 
-        <a href="{{ route('secretary.eleves.index') }}"
-           class="sidebar-link {{ request()->routeIs('secretary.eleves.*') ? 'active' : '' }}">
+        <a href="{{ route('secretariat.eleves.index') }}"
+           class="sidebar-link {{ request()->routeIs('secretariat.eleves.*') ? 'active' : '' }}">
             <i class="fas fa-user-graduate"></i>
             <span>Élèves</span>
         </a>
 
-        <a href="{{ route('secretary.classes.index') }}"
-           class="sidebar-link {{ request()->routeIs('secretary.classes.*') ? 'active' : '' }}">
+        <a href="{{ route('secretariat.classes.index') }}"
+           class="sidebar-link {{ request()->routeIs('secretariat.classes.*') ? 'active' : '' }}">
             <i class="fas fa-chalkboard"></i>
             <span>Classes</span>
         </a>
 
-        <a href="{{ route('secretary.bulletins.index') }}"
-           class="sidebar-link {{ request()->routeIs('secretary.bulletins.*') ? 'active' : '' }}">
+        <a href="{{ route('secretariat.bulletins.index') }}"
+           class="sidebar-link {{ request()->routeIs('secretariat.bulletins.*') ? 'active' : '' }}">
             <i class="fas fa-file-alt"></i>
             <span>Bulletins</span>
         </a>
 
-        <a href="{{ route('secretary.presences.index') }}"
-           class="sidebar-link {{ request()->routeIs('secretary.presences.*') ? 'active' : '' }}">
+        <a href="{{ route('secretariat.presences.index') }}"
+           class="sidebar-link {{ request()->routeIs('secretariat.presences.*') ? 'active' : '' }}">
             <i class="fas fa-calendar-check"></i>
             <span>Présences</span>
         </a>
@@ -53,7 +53,7 @@
     <div class="sidebar-section-title">COMPTE</div>
 
     <nav class="sidebar-nav">
-        <a href="{{ route('secretary.profile.edit') }}" class="sidebar-link">
+        <a href="{{ route('secretariat.profile.edit') }}" class="sidebar-link">
             <i class="fas fa-user-cog"></i>
             <span>Mon profil</span>
         </a>

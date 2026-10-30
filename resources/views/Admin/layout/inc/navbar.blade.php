@@ -70,3 +70,55 @@
         </div>
     </div>
 </nav>
+
+<style>
+    
+/* CORRECTION : NAVBAR AU-DESSUS DE LA SIDEBAR */
+
+.school-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 258px !important;
+    height: 100vh !important;
+    z-index: 1040 !important;
+}
+
+/* Navbar au-dessus de la sidebar */
+.school-navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 258px !important;
+    right: 0 !important;
+    width: auto !important;
+    height: 76px !important;
+    margin: 0 !important;
+    z-index: 1100 !important;
+    background: #ffffff !important;
+}
+
+/* Le contenu commence sous la navbar et à droite de la sidebar */
+.school-main-content,
+.main-content {
+    margin-top: 76px !important;
+    margin-left: 258px !important;
+    width: calc(100% - 258px) !important;
+}
+
+/* Sur mobile, la navbar occupe toute la largeur */
+@media (max-width: 991.98px) {
+    .school-navbar {
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+    }
+
+    .school-main-content,
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+}
+
+</style>

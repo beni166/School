@@ -165,8 +165,21 @@
                     <h5 class="fw-bold mb-1">
                         <i class="bi bi-people text-primary me-2"></i>Élèves inscrits
                     </h5>
+                    
                     <p class="text-muted small mb-0">Liste des inscriptions associées à cette classe.</p>
                 </div>
+                 {{-- Export PDF --}}
+                @if(isset($anneeScolaire) && $anneeScolaire)
+                    <a href="{{ route('director.classes.liste-eleves.pdf', [
+                        'classe' => $classe->id,
+                        'anneeScolaire' => $anneeScolaire->id,
+                    ]) }}"
+                       class="btn btn-danger btn-sm px-3"
+                       target="_blank">
+                        <i class="bi bi-file-earmark-pdf me-1"></i>
+                        Liste des élèves PDF
+                    </a>
+                @endif
 
                 <div class="card-body p-0 mt-3">
                     <div class="table-responsive">
@@ -203,6 +216,7 @@
                                         </td>
                                     </tr>
                                 @endforelse
+                                
                             </tbody>
                         </table>
                     </div>

@@ -7,7 +7,9 @@ use App\Models\Niveau;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
-
+use App\Models\AnneeScolaire;
+use App\Models\Inscription;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ClasseController extends Controller
 {
@@ -49,8 +51,12 @@ class ClasseController extends Controller
             'affectations.professeur',
             'affectations.matiere',
         ]);
+        $anneeScolaire = AnneeScolaire::where('active', true)->first();
 
-        return view('classe.show', ['classe' => $class]);
+        return view('classe.show', [
+            'classe' => $class,
+            'anneeScolaire' => $anneeScolaire,
+        ]);
     }
 
 
@@ -97,5 +103,36 @@ class ClasseController extends Controller
 
         return redirect()->route('director.classes.index')
             ->with('success', 'Classe supprimée.');
+    }
+
+    public function exporterListeElevesPdf(
+        Classe $classe,
+        AnneeScolaire $anneeScolaire
+    ) {
+        $inscriptions = Inscription::with([
+            'eleve',
+            'notes.matiere',
+            'notes.periode',
+        ])
+            ->where('classe_id', $classe->id)
+            ->where('annee_scolaire_id', $anneeScolaire->id)
+            ->whereHas('eleve')
+            ->get()
+            ->sortBy(
+                fn($inscription) =>
+                $inscription->eleve->nom . ' ' .
+                    $inscription->eleve->prenom
+            )
+            ->values();
+
+        $pdf = Pdf::loadView('classe.liste-eleves-pdf', [
+            'classe' => $classe,
+            'anneeScolaire' => $anneeScolaire,
+            'inscriptions' => $inscriptions,
+        ])->setPaper('a4', 'landscape');
+
+        return $pdf->download(
+            'liste-eleves-' . $classe->nom . '.pdf'
+        );
     }
 }

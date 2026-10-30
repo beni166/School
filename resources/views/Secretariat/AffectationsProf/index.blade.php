@@ -9,7 +9,7 @@
             <h1 class="h3 fw-bold mb-1">Affectations des professeurs</h1>
             <p class="text-secondary mb-0">Gérez les professeurs responsables de chaque matière, classe et année scolaire.</p>
         </div>
-        <a href="{{ route('secretary.affectations.create') }}" class="btn btn-primary rounded-3 px-4">
+        <a href="{{ route('secretariat.affectations.create') }}" class="btn btn-primary rounded-3 px-4">
             <i class="bi bi-plus-circle me-2"></i>Nouvelle affectation
         </a>
     </div>
@@ -64,13 +64,13 @@
                                 <td>{{ $affectation->anneeScolaire?->libelle ?? 'Année non définie' }}</td>
                                 <td class="text-end pe-4">
                                     <div class="d-inline-flex gap-1">
-                                        <a href="{{ route('secretary.affectations.show', $affectation->id) }}" class="btn btn-sm btn-outline-secondary" title="Voir" aria-label="Voir l'affectation">
+                                        <a href="{{ route('secretariat.affectations.show', $affectation->id) }}" class="btn btn-sm btn-outline-secondary" title="Voir" aria-label="Voir l'affectation">
                                             <i class="bi bi-eye"></i>
                                         </a>
-                                        <a href="{{ route('secretary.affectations.edit', $affectation->id) }}" class="btn btn-sm btn-outline-primary" title="Modifier" aria-label="Modifier l'affectation">
+                                        <a href="{{ route('secretariat.affectations.edit', $affectation->id) }}" class="btn btn-sm btn-outline-primary" title="Modifier" aria-label="Modifier l'affectation">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                       <form action="{{ route('secretary.affectations.destroy', $affectation->id) }}"
+                                       <form action="{{ route('secretariat.affectations.destroy', $affectation->id) }}"
                                             method="POST"
                                             class="d-inline"
                                             onsubmit="return confirmDelete(event, '{{ addslashes(trim(($affectation->professeur?->nom ?? '') . ' ' . ($affectation->professeur?->prenom ?? ''))) }}');">
@@ -92,7 +92,7 @@
                                     <i class="bi bi-person-workspace display-5 text-secondary"></i>
                                     <p class="fw-semibold mt-3 mb-1">Aucune affectation enregistrée</p>
                                     <p class="text-secondary small mb-3">Commencez par associer un professeur à une matière et à une classe.</p>
-                                    <a href="{{ route('secretary.affectations.create') }}" class="btn btn-primary btn-sm rounded-3">
+                                    <a href="{{ route('secretariat.affectations.create') }}" class="btn btn-primary btn-sm rounded-3">
                                         <i class="bi bi-plus-circle me-1"></i>Créer une affectation
                                     </a>
                                 </td>
