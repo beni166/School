@@ -62,7 +62,7 @@ class DecisionScolaireController extends Controller
 
         DecisionScolaire::create($data);
 
-        return redirect()->route('decisions-scolaires.index')
+        return redirect()->route('director.decisions-scolaires.index')
             ->with('success', 'Décision scolaire enregistrée.');
     }
 
@@ -114,7 +114,7 @@ class DecisionScolaireController extends Controller
 
         $decisionScolaire->update($data);
 
-        return redirect()->route('decisions-scolaires.index')
+        return redirect()->route('director.decisions-scolaires.index')
             ->with('success', 'Décision modifiée.');
     }
 
@@ -122,7 +122,7 @@ class DecisionScolaireController extends Controller
     {
         $decisionScolaire->delete();
 
-        return redirect()->route('decisions-scolaires.index')
+        return redirect()->route('director.decisions-scolaires.index')
             ->with('success', 'Décision supprimée.');
     }
 }

@@ -13,11 +13,16 @@ class SecretaryMiddleware
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role !== "secretary") {
-            return redirect('secretariat/dashboard');
+        if (!auth()->check()) {
+            return redirect()->route('login');
         }
+
+        if (auth()->user()->role !== 'secretary') {
+            abort(403);
+        }
+
         return $next($request);
     }
 }

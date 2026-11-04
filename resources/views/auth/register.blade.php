@@ -13,6 +13,8 @@
     {{-- Font Awesome --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           rel="stylesheet">
+              <link rel="stylesheet" href="{{ asset('assets/Auth/css/all.min.css') }}">
+
 
     {{-- Ton design personnalisé --}}
     <link rel="stylesheet" href="{{ asset('assets/Auth/css/Sytle.css') }}">

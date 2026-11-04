@@ -15,9 +15,14 @@ class DirectorMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role !== "director") {
-            return redirect('director/dashboard');
+        if (!auth()->check()) {
+            return redirect()->route('login');
         }
+
+        if (auth()->user()->role !== 'director') {
+            abort(403);
+        }
+
         return $next($request);
     }
 }

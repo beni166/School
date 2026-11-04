@@ -14,6 +14,9 @@
           rel="stylesheet">
           <link rel="stylesheet" href="{{ asset('assets/admin/js/bootstrap.v.5.3.2/bootstrap.min.css') }}">
           <link rel="stylesheet" href="{{ asset('assets/admin/js/bootstrap.v.5.3.2/bootstrap.bundle.min.js') }}">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+          <link rel="stylesheet" href="{{ asset('assets/bootstrap.v.5/icon.css') }}">
+          
 
     <link rel="stylesheet" href="{{ asset('assets/css/secretariat.css') }}">
 </head>

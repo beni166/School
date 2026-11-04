@@ -17,9 +17,7 @@ class BulletinDetailController extends Controller
      */
     public function index(Bulletin $bulletin)
     {
-        $bulletinDetails = BulletinDetail::where('bulletin_id', $bulletin->id)
-            ->with('matiere')
-            ->get();
+        $bulletinDetails = BulletinDetail::where('bulletin_id', $bulletin->id)->get();
 
         return view('bulletin-details.index', compact('bulletin', 'bulletinDetails'));
     }

@@ -11,6 +11,7 @@ class DecisionScolaire extends Model
     protected $fillable = [
         'inscription_id',
         'decision',
+        'moyenne_annuelle',
         'classe_suivante_id',
         'observation',
     ];
