@@ -15,12 +15,8 @@ class SecretaryMiddleware
      */
      public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check()) {
-            return redirect()->route('login');
-        }
-
-        if (auth()->user()->role !== 'secretary') {
-            abort(403);
+       if (auth()->user()->role !== "secretary") {
+            return redirect('secretariat/dashboard');
         }
 
         return $next($request);
